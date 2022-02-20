@@ -1,0 +1,25 @@
+{
+  "name": "nakama_bench",
+  "version": "1.0.0",
+  "description": "nakama server network basic benchmarking and realtime Plotly monitoring",
+  "scripts": {
+    "dev": "tsc-watch --noClear --onSuccess \"node --experimental-specifier-resolution=node ./dist/index.js\""
+  },
+  "author": "Slaus @ SlavMFM@gmail.com",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@heroiclabs/nakama-js": "2.3.0",
+    "@types/express": "4.17.13",
+    "@types/node": "17.0.16",
+    "@types/uuid": "^8.3.4",
+    "@types/ws": "8.2.3",
+    "dotenv": "16.0.0",
+    "express": "4.17.2",
+    "node-fetch": "3.2.0",
+    "tsc-watch": "^4.6.0",
+    "uuid": "8.3.2",
+    "ws": "8.5.0",
+    "xhr2": "0.2.1"
+  }
+}

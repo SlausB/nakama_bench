@@ -1,0 +1,38 @@
+version: "3"
+services:
+    bench_plotly:
+        build:
+            context: .
+            dockerfile: ./plotly/plotly.Dockerfile
+            args:
+                - USER_ID=$USER_ID
+                - GROUP_ID=$GROUP_ID
+                - DOCKER_GROUP_ID=$DOCKER_GROUP_ID
+        user: $USER_ID:$GROUP_ID
+        volumes:
+            - ./:/usr/src/app
+            # to run container as host user, refer https://faun.pub/set-current-host-user-for-docker-container-4e521cef9ffc
+            - /etc/group:/etc/group:ro
+            - /etc/passwd:/etc/passwd:ro
+            - /etc/shadow:/etc/shadow:ro
+        #had to use host network because nakama is outside this docker-compose:
+        network_mode: "host"
+        depends_on:
+            - nakama_bench
+        tty: true
+    
+    nakama_bench:
+        build:
+            context: .
+            dockerfile: ./nakama_bench.Dockerfile
+            args:
+                - USER_ID=$USER_ID
+                - GROUP_ID=$GROUP_ID
+                - DOCKER_GROUP_ID=$DOCKER_GROUP_ID
+        volumes:
+            - ./:/usr/src/app
+        #had to use host network because nakama is outside this docker-compose:
+        network_mode: "host"
+        tty: true
+
+
