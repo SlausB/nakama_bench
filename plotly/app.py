@@ -45,7 +45,7 @@ app.layout = html.Div(children=[
     html.H1(children='Connection delays'),
 
     html.Div(children='''
-        Til response to anonim 'yandex-login'
+        Til response to anonim authenticateCustom
     '''),
 
     dcc.Graph(

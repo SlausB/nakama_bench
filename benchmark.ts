@@ -57,7 +57,13 @@ function spawn_connection() {
         .then(
             result => {
                 //console.log( 'Client custom authenticated:', result )
-                connection.logged_in_at = Date.now()
+                if ( result.created == true ) {
+                    connection.logged_in_at = Date.now()
+                }
+                else {
+                    console.error( 'Failed to create session' )
+                    connection.failed_at = Date.now()
+                }
             },
             e => {
                 console.error( 'Client connection failed:', e )
